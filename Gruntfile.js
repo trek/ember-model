@@ -20,24 +20,29 @@ module.exports = function(grunt) {
       },
       'dist/ember-model.js': 'packages/ember-model/lib/main.js'
     },
+
     uglify: {
       production: {
         src: 'dist/ember-model.prod.js',
         dest: 'dist/ember-model.min.js'
       }
     },
+
     jshint: {
       options: {
         jshintrc: '.jshintrc'
       },
       all: ['Gruntfile.js', 'packages/ember-model/**/*.js']
     },
+
     qunit: {
       all: ['tests/**/*.html']
     },
+
     build_test_runner_file: {
       all: ['packages/ember-model/tests/**/*_test.js']
     },
+
     banner: {
       options: {
         license: 'banner.txt'
@@ -50,6 +55,7 @@ module.exports = function(grunt) {
         src: 'dist/ember-model.min.js'
       }
     },
+
     strip : {
       production : {
         src : 'dist/ember-model.prod.js',
@@ -59,10 +65,26 @@ module.exports = function(grunt) {
         }
       }
     }
+
   });
 
   // Load the plugins that provide tasks
   require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
+  grunt.task.renameTask('release', '_release');
+
+  grunt.registerTask('release', 'tag a new release', function(type){
+    type = type || 'patch';
+    var options = this.options({
+        file: 'bower.json',
+        npm: false,
+        add: 'ember-model.js'
+    });
+
+    grunt.task.run('build');
+    grunt.file.copy('dist/ember-model.js', 'ember-model.js');
+
+    grunt.task.run('_release:'+type, options);
+  });
 
   grunt.registerMultiTask('banner', 'Append a banner to production', function(){
     var options = this.options(),

@@ -25,6 +25,8 @@
     "grunt-curl": "~1.1.1",
     "grunt-strip": "~0.2.1",
     "grunt-gitinfo": "~0.1.1",
-    "execSync": "0.0.4"
-  }
+    "execSync": "0.0.4",
+    "grunt-release": "~0.3.5"
+  },
+  "version": null
 }
