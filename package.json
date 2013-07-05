@@ -27,7 +27,8 @@
     "grunt-strip": "~0.2.1",
     "execSync": "0.0.4",
     "grunt-release": "~0.3.5",
-    "glob": "~3.2.1"
+    "glob": "~3.2.1",
+    "grunt-contrib-copy": "~0.4.1"
   },
   "version": "0.0.0"
 }

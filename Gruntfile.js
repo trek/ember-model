@@ -17,7 +17,8 @@ module.exports = function(grunt) {
     },
     banner: config('banner'),
     strip: config('strip'),
-    clean: config('clean')
+    clean: config('clean'),
+    copy:  config('copy')
   });
 
   // Load the node modules that provide tasks
@@ -29,7 +30,9 @@ module.exports = function(grunt) {
   // load local tasks
   grunt.task.loadTasks('./tasks');   
   
-  grunt.registerTask('build', ['jshint', 'neuter', 'build-prod']);
+  grunt.registerTask('build', ['jshint', 'neuter', 'production']);
+
+  grunt.registerTask('production', ['copy:production', 'strip:production', 'uglify:production', 'banner']);
   grunt.registerTask('test', ['jshint', 'neuter', 'build_test_runner_file', 'qunit', 'clean:test']);
   grunt.registerTask('default', ['build']);
 

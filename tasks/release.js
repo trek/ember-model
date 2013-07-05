@@ -3,8 +3,7 @@ module.exports = function(grunt){
     type = type || 'patch';
 
     grunt.task.run('build');
-    grunt.file.copy('dist/ember-model.js', 'ember-model.js');
-
+    grunt.task.run('copy:release');
     grunt.task.run('_release:'+type);
   });
 };
