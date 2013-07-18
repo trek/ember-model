@@ -1,7 +1,8 @@
 var get = Ember.get,
     set = Ember.set,
-    meta = Ember.meta;
-
+    meta = Ember.meta,
+    what = Ember.what;
+    
 function wrapObject(value) {
   if (Ember.isArray(value)) {
     var clonedArray = value.slice();
